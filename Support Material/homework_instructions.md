@@ -184,7 +184,7 @@ All the recommended files and directories from the steps above should look like 
 │       ├── css
 │       │   └── burger_style.css
 │       └── img
-│           └── burger.png
+│           └── burger.png***
 │   
 │
 ├── server.js
