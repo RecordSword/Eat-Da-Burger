@@ -1,77 +1,40 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <br>
-            <br>
-            <h1 class="titleText">Eat Da Burger</h1>
-            <br>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <center> <img src="/assets/images/patty.png"></center>
+<h1>Add a Burger</h1>
+<form class="create-form">
 
+  <div class="form-group">
+    <label for="burg">Burger:</label>
+    <input type="text" id="burg" name="burger_name">
+  </div>
 
-            <br>
-            <br>
-        </div>
-    </div>
+  <div class="form-group">
+    <label for="devoured">Devoured?</label><br>
+    <input type="radio" name="devoured" value="0" checked>Straight up needs to be Devoured!<br>
+    <input type="radio" name="devoured" value="1">Devoured!
+  </div>
 
+  <button type="submit">Add Burger</button>
+</form>
 
+<h1>Burgers!</h1>
 
-    <div class="row">
-        <div class="col-12 burgerForm">
-            <h3 class="miniHeading">add burgers</h3>
-            <div class="moveMe">
-                <form class="create-update-form">
-                    <div class="form-group">
-                        <textarea type="text" name="burger_name"></textarea><br>
-                        <button class="btn btn-warning" type="submit" style="background-color:beige;">add da burger!
-                        </button>
-                    </div>
-            </div>
-            </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 burgers">
-            <h3 class="miniHeading">stars of the show! </h3>
-            <br>
-            <ul>
-                {{#each burgers}}
-                {{#unless this.devoured}}
-                <div class="showBurger">
-                    <p>
-                        {{this.burger_name}}</p>
-                    <form>
-                        <input type="hidden" name="devoured" value="1">
-                        <button type="submit" class="btn" style="background-color: #5DBCD2 ;">eat da burger!</button>
-                    </form>
-                    <br>
-                </div>
-                {{/unless}}
-                {{/each}}
-            </ul>
-        </div>
-        <div class="col-6 devoured">
-            <h3 class="miniHeading">burgers devoured</h3>
-            <br>
-            <ul>
-                {{#each burgers}}
-                {{#if this.devoured}}
-                <div class="devourBurger">
-                    <p>
-                        {{this.burger_name}}</p>
-                    <form>
-                        <button type="submit" class="btn" style="background-color: #5DBCD2 ;">delete da burger!
-                        </button>
-                    </form>
-                    {{/if}}
-                    {{/each}}
-            </ul>
-        </div>
-    </div>
-</div>
-<hr>
+<h2>Burgers waiting TO BE DEVOURED</h2>
 
-</div>
+<ul>
+  {{#each burgers}}
+  {{#unless devoured}}
+  <li>
+    {{> burgers/burger-block devoured=true}}
+  </li> {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>DEVOURED Burgers</h2>
+
+<ul>
+  {{#each burgers}}
+  {{#if devoured}}
+  <li>
+    {{> burgers/burger-block devoured=false}}
+  </li> {{/if}}
+  {{/each}}
+</ul>
