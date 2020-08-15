@@ -1,6 +1,7 @@
 var express = require("express");
 
 var router = express.Router();
+
 // Import the model (burger.js) to use its database functions.
 var burger = require("../models/burger.js");
 
@@ -13,7 +14,6 @@ router.get("/burger/", function (req, res) {
     console.log(hbsObject);
     res.render("index", hbsObject);
   });
-
 });
 
 router.post("/burger/api/burgers", function (req, res) {
@@ -48,6 +48,7 @@ router.delete("/burger/api/burgers/:id", function (req, res) {
   var condition = "id = " + req.params.id;
 
   burger.deleteOne(condition, function (result) {
+    console.log("This result", result)
     if (result.changedRows === 0) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
